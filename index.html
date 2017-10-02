@@ -2,32 +2,32 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="./css/style.css">
   <title>TikTakTo</title>
 </head>
 <body>
-  <table>
+  <div>
 
     <h2>tiktakto</h2>
-    <div class="gameBoard">
-      <tr>
-        <td class="tile" id="r1c1">r1.1</td>
-        <td class="tile" id="r1c2">r1.2</td>
-        <td class="tile" id="r1c3">X</td>
-      </tr>
-      <tr>
-        <td class="tile" id="r2c1">X</td>
-        <td class="tile" id="r2c2">X</td>
-        <td class="tile" id="r2c3">X</td>
-      </tr>
-      <tr>
-        <td class="tile" id="r3c1">X</td>
-        <td class="tile" id="r3c2">X</td>
-        <td class="tile" id="r3c3">X</td>
-      </tr>
-
-
-    </table>
+    <div class = 'container'>
+      <div class="row">
+        <div class="tile col-sm-4 oOwns" id="r1c1"></div>
+        <div class="tile col-sm-4" id="r1c2"></div>
+        <div class="tile col-sm-4" id="r1c3"></div>
+      </div>
+      <div class="row">
+        <div class="tile col-sm-4" id="r2c1"></div>
+        <div class="tile col-sm-4" id="r2c2"></div>
+        <div class="tile col-sm-4" id="r2c3"></div>
+      </div>
+      <div class="row">
+        <div class="tile col-sm-4" id="r3c1"></div>
+        <div class="tile col-sm-4" id="r3c2"></div>
+        <div class="tile col-sm-4" id="r3c3"></div>
+      </div>
+    </div>
+    <h3 id="display">Ready Player 1</h3>
     <button class="reset" type="button" name="button">Reset</button>
   </div>
   <script src="./js/app.js" charset="utf-8"></script>
