@@ -9,8 +9,10 @@ var xOwns = [];
 var oOwns = [];
 var xCount;
 var oCount;
+var winner;
 xCount = 0;
 oCount = 0;
+
 
 /*----- cached element references -----*/
 
@@ -24,6 +26,7 @@ var oSkor = document.querySelector('#oSkor');
 /*----- event listeners -----*/
 
 function initialize(){
+
 // set listeners for tiles
 tiles.forEach(function(i){
   i.addEventListener("click", handleClick);
@@ -139,35 +142,26 @@ function xWins(){
   xCount += 1;
   xSkor.textContent = xCount;
   display.textContent = "X Wins!";
-  resetButton.textContent = "Play Again?";
   resetButton.style.color = '#EF8354';
-  clearBoard();
-  initialize();
+  setTimeout(function(){
+    clearBoard();
+    initialize();
+  }, 600)
 }
 
 function oWins(){
   oCount += 1;
   oSkor.textContent = oCount;
   display.textContent = "O Wins!";
-  resetButton.textContent = "Play Again?";
   resetButton.style.color = '#EF8354';
-  clearBoard();
-  initialize();
-  // setTimeoutclearBoard();
-    //remove listeners:
-  // tiles.forEach(function(i){
-  //   i.removeEventListener("click", handleClick);
-  //   i.style.backgroundColor = "grey";
-  // });
+  setTimeout(function(){
+    clearBoard();
+    initialize();
+  }, 600)
 }
 
 function tieGame(){
   display.textContent = "Stalemate.  Deadlock.  Tie.";
-  //remove listeners:
-  // tiles.forEach(function(i){
-  //   i.removeEventListener("click", handleClick);
-  //   i.style.backgroundColor = "grey";
-  // });
   resetButton.textContent = "Play Again?";
   resetButton.style.color = '#EF8354';
     // resetTiles()
