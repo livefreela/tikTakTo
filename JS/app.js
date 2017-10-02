@@ -4,45 +4,46 @@
 
 /*----- app's state (variables) -----*/
 
-var win = false;
-var currentTurn;
+// var win = false;
 var currentTurn = 'X';
 var xOwns = [];
 var oOwns = [];
+var xCount;
+var oCount;
+xCount = 0;
+oCount = 0;
+
+// oSkor.textContent = oCount;
+// xSkor.textContent = xCount;
 
 /*----- cached element references -----*/
 
-// var r1c1 = document.getElementById('1');
-// var r1c2 = document.getElementById('2');
-// var r1c3 = document.getElementById('3');
-// var r2c1 = document.getElementById('4');
-// var r2c2 = document.getElementById('5');
-// var r2c3 = document.getElementById('6');
-// var r3c1 = document.getElementById('7');
-// var r3c2 = document.getElementById('8');
-// var r3c3 = document.getElementById('9');
 
+var clearButton = document.querySelector('.clear');
 var tiles = document.querySelectorAll("div.container div div");
+
 var resetButton = document.querySelector('.reset');
 var display = document.getElementById('display');
+var xSkor = document.querySelector('#xSkor');
+var oSkor = document.querySelector('#oSkor');
 /*----- event listeners -----*/
 
-
-
-
-
-/*----- functions -----*/
-
 function initialize(){
+
   //initialize reset button
-  resetButton.addEventListener('click', function(){
-    clearBoard();
-  });
+
 // set listeners for tiles
 tiles.forEach(function(i){
   i.addEventListener("click", handleClick);
 });
+resetButton.addEventListener('click', function(){
+  clearBoard();
+  // handleClick();
+});
   display.textContent = 'Player X Begin!';
+  xSkor.innerHTML = xCount;
+  oSkor.innerHTML = oCount;
+
 }
 
 function handleClick(evt){
@@ -59,32 +60,38 @@ function handleClick(evt){
       }
     }
     evt.target.classList.add(currentTurn);
-    console.log(evt.target.id);
     winCheck();
   }
+
+    clearButton.addEventListener('click', function(){
+      clearCount();
+    });
+
+/*----- functions -----*/
 
 function nextTurn(){
   currentTurn === "X" ? currentTurn = "O" : currentTurn = "X";
   display.textContent = "Ready Player " + currentTurn;
-
 }
 
 function clearBoard() {
-  // allCells.forEach(function(i){
-  //   i.classList.add('blue');
-  // });
   xOwns = [];
   oOwns = [];
-  resetTiles();
   currentTurn = "X";
   display.textContent = "Player X Begin!";
   resetButton.textContent = "Reset";
-  // intitialize();
-	// $('.tile').removeClass('played');
-	// $('.tile').removeClass('O-play');
-	// $('.tile').removeClass('X-play');
-	// $('.tile').html('');
-	// $('.tile').addClass('free')
+  resetButton.style.color = '#2D3142';
+  resetTiles();
+}
+
+function clearCount(){
+  xCount = 0;
+  oCount = 0;
+  xSkor.textContent = xCount;
+  oSkor.textContent = oCount;
+  resetButton.style.color = '#2D3142';
+  clearBoard();
+  initialize();
 }
 
 function winCheck(){
@@ -136,29 +143,37 @@ function winCheck(){
 }
 
 function xWins(){
+  xCount += 1;
+  xSkor.textContent = xCount;
   display.textContent = "X Wins!";
   resetButton.textContent = "Play Again?";
+  resetButton.style.color = '#EF8354';
 }
 
 function oWins(){
+  oCount += 1;
+  oSkor.textContent = oCount;
   display.textContent = "O Wins!";
   resetButton.textContent = "Play Again?";
+  resetButton.style.color = '#EF8354';
 }
 
 function tieGame(){
-  display.textContent = "Stalemate.  Deadlock.  Tie.  Play Again?";
-  tiles.forEach(function(i){
-    i.removeEventListener("click", handleClick);
-    i.style.backgroundColor = "grey";
-  });
-    // display.textContent = 'Player X Begin!';
+  display.textContent = "Stalemate.  Deadlock.  Tie.";
+  //remove listeners:
+  // tiles.forEach(function(i){
+  //   i.removeEventListener("click", handleClick);
+  //   i.style.backgroundColor = "grey";
+  // });
+    resetButton.textContent = "Play Again?";
+    resetButton.style.color = '#EF8354';
+    // resetTiles()
 }
 
 function resetTiles(){
   for (var i = 0; i < tiles.length; i++ ){
     tiles[i].classList.remove('X');
     tiles[i].classList.remove('O');
-
   }
 }
 

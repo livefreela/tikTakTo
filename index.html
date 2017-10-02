@@ -2,16 +2,16 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
   <link rel="stylesheet" href="./css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.4/howler.js" charset="utf-8"></script>
+  <link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
   <title>TikTakTo</title>
 </head>
 <body>
   <div>
-
-    <h2>tiktakto</h2>
     <div class = 'container'>
-
+      <h2>  tiktakto</h2>
       <div class="row">
         <div class="tile col-xs-3" id="1"></div>
         <div class="tile col-xs-3" id="2"></div>
@@ -26,23 +26,15 @@
         <div class="tile col-xs-3" id="7"></div>
         <div class="tile col-xs-3" id="8"></div>
         <div class="tile col-xs-3" id="9"></div>
-
-      <!-- <h3 class='skor'>Skor:</h3> -->
+      </div>
+      <h3 id="display">Ready Player 1</h3>
+      <div class="btn-group">
+        <button class="reset" type="button" name="button">Reset</button>
+        <button class="clear" type="button" name="button">Clear</button>
+        <button class="skor" type="button" name="button"><span id="xSkor">x</span>:<span id="oSkor">x</span></button>
+      </div>
     </div>
-
-
   </div>
-  <div class="btn-group">
-
-    <button class="btn btn-secondary reset" type="button" name="button">Reset</button>
-    <button class="btn btn-secondary clear" type="button" name="button">Clear</button>
-  </div>
-  <h3 id="display">Ready Player 1</h3>
-
-
-  </div>
-
-
   <script src="./js/app.js" charset="utf-8"></script>
 </body>
 </html>
