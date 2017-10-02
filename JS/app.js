@@ -4,7 +4,6 @@
 
 /*----- app's state (variables) -----*/
 
-// var win = false;
 var currentTurn = 'X';
 var xOwns = [];
 var oOwns = [];
@@ -13,37 +12,30 @@ var oCount;
 xCount = 0;
 oCount = 0;
 
-// oSkor.textContent = oCount;
-// xSkor.textContent = xCount;
-
 /*----- cached element references -----*/
-
 
 var clearButton = document.querySelector('.clear');
 var tiles = document.querySelectorAll("div.container div div");
-
 var resetButton = document.querySelector('.reset');
 var display = document.getElementById('display');
 var xSkor = document.querySelector('#xSkor');
 var oSkor = document.querySelector('#oSkor');
+
 /*----- event listeners -----*/
 
 function initialize(){
-
-  //initialize reset button
-
 // set listeners for tiles
 tiles.forEach(function(i){
   i.addEventListener("click", handleClick);
 });
+ //initialize reset button
 resetButton.addEventListener('click', function(){
   clearBoard();
-  // handleClick();
+  handleClick();
 });
   display.textContent = 'Player X Begin!';
   xSkor.innerHTML = xCount;
   oSkor.innerHTML = oCount;
-
 }
 
 function handleClick(evt){
@@ -63,6 +55,7 @@ function handleClick(evt){
     winCheck();
   }
 
+  //clear score count
     clearButton.addEventListener('click', function(){
       clearCount();
     });
@@ -148,6 +141,8 @@ function xWins(){
   display.textContent = "X Wins!";
   resetButton.textContent = "Play Again?";
   resetButton.style.color = '#EF8354';
+  clearBoard();
+  initialize();
 }
 
 function oWins(){
@@ -156,6 +151,14 @@ function oWins(){
   display.textContent = "O Wins!";
   resetButton.textContent = "Play Again?";
   resetButton.style.color = '#EF8354';
+  clearBoard();
+  initialize();
+  // setTimeoutclearBoard();
+    //remove listeners:
+  // tiles.forEach(function(i){
+  //   i.removeEventListener("click", handleClick);
+  //   i.style.backgroundColor = "grey";
+  // });
 }
 
 function tieGame(){
@@ -165,8 +168,8 @@ function tieGame(){
   //   i.removeEventListener("click", handleClick);
   //   i.style.backgroundColor = "grey";
   // });
-    resetButton.textContent = "Play Again?";
-    resetButton.style.color = '#EF8354';
+  resetButton.textContent = "Play Again?";
+  resetButton.style.color = '#EF8354';
     // resetTiles()
 }
 
@@ -178,3 +181,40 @@ function resetTiles(){
 }
 
 initialize();
+
+
+
+// Jim's Example re: state
+
+// on html
+/* <main>
+  <div id="0-box"></div>
+  <div id="1-box"></div>
+  <div id="2-box"></div>
+  <div id="3-box"></div>
+</main> */
+
+
+
+// var data;
+
+// document.querySelector("main")
+// .addEventListener('click', function(evt){
+// 	//var idx = parseInt(evt.target.id);
+//   var idx = evt.target.id.charAt(0);
+//   data[idx]++;
+//   render();
+// });
+
+// function init(){
+// 	data = [2, 4, 3, 9];
+// }
+
+// function render(){
+// 	data.forEach(function(num, idx){
+//   	var box = document.getElementById(idx + "-box").textContent = num;
+//   });
+// }
+
+// init();
+// render();
